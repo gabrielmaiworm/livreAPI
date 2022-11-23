@@ -20,9 +20,9 @@ module.exports = {
       query.leftJoin("Estoque", "Estoque.kit", "Locacao.kit");
       query.leftJoin("Parceiro", "Parceiro.documento_empresa", "Estoque.parceiro");
 
-      query.where("Locacao.devolvido", 0);
+      query.where("Locacao.devolvido", false);
       if (mostrarEmergencia == null || mostrarEmergencia == undefined || !mostrarEmergencia) {
-        query.where("Estoque.emergencia", 0);
+        query.where("Estoque.emergencia", false);
       }
 
       if (dataInicial) {
@@ -90,7 +90,7 @@ module.exports = {
 
     try {
       const query = knex("Locacao").withSchema(schemaName);
-      query.where("Locacao.devolvido", 0).andWhere(function () {
+      query.where("Locacao.devolvido", false).andWhere(function () {
         this.orWhere("Locacao.documento", documento).orWhere(
           "Locacao.numero_serie_equipamento",
           numero_serie_equipamento
@@ -118,9 +118,9 @@ module.exports = {
       } else {
         const query2 = knex("Estoque").withSchema(schemaName);
         query2.update("data_atualizacao", knex.fn.now());
-        query2.update("emprestado", 1);
+        query2.update("emprestado", true);
         query2.where("numero_serie_equipamento", numero_serie_equipamento);
-        query2.andWhere("ativo", 1);
+        query2.andWhere("ativo", true);
         query2.returning(["numero_serie_bateria", "numero_serie_equipamento", "kit"]);
         const results2 = await query2;
 
@@ -169,11 +169,11 @@ module.exports = {
         status: req.body.status.toUpperCase(),
         sugestao: req.body.sugestao.toUpperCase(),
         avaliacao: req.body.avaliacao,
-        devolvido: "1",
+        devolvido: "true",
         foto: req.body.foto,
       });
       query.where("documento", documento);
-      query.andWhere("devolvido", 0);
+      query.andWhere("devolvido", false);
       query.returning("*");
       const result = await query;
 
@@ -198,7 +198,7 @@ module.exports = {
 
         const updateEmprestado = await knex("Estoque")
           .withSchema(schemaName)
-          .update("emprestado", 0)
+          .update("emprestado", false)
           .where("kit", kit);
 
         console.log("Update Emprestado:", updateEmprestado);
@@ -220,7 +220,7 @@ module.exports = {
       const query = knex("Locacao")
         .withSchema(schemaName)
         .join("Usuario", "Locacao.documento", "Usuario.documento");
-      query.where("devolvido", "=", 0);
+      query.where("devolvido", "=", false);
       query.select("Usuario.nome");
       query.select("Locacao.*");
       query.orderBy("data_solicitacao", "desc");

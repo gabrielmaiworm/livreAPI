@@ -23,7 +23,7 @@ const ListaController = require("./controllers/ListaController");
 
 routes.get("/lista-espera", ListaController.index);
 routes.post("/lista-espera", ListaController.create);
-routes.delete("/lista-espera", ListaController.delete);
+routes.put("/lista-espera", ListaController.delete);
 routes.put("/lista-espera", ListaController.update);
 routes.get("/equipamento", EquipamentoController.index);
 routes.get("/equipamento-liberado", EquipamentoController.indexSerie);
@@ -67,7 +67,7 @@ routes.put("/parceiro-senha", ParceiroController.update_senha);
 routes.get("/parceiro-lista", ParceiroController.indexParceiros);
 routes.get("/autenticacao-parceiro", ParceiroController.authenticate);
 routes.get("/solicitacao", SolicitacaoController.index);
-routes.get("/solicitacao-completo", SolicitacaoController.indexTotal);
+routes.get("/completosolicitacao-", SolicitacaoController.indexTotal);
 routes.get("/solicitacao-andamento", SolicitacaoController.index);
 routes.get("/solicitacao/:campo", SolicitacaoController.index);
 routes.post("/solicitacao", SolicitacaoController.create);

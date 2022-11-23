@@ -2,6 +2,8 @@ const knex = require("../database");
 
 
 module.exports = {
+
+  ///lista todos///
   async index(req, res, next) {
     try {
       const { documento, evento, nome,parceiro } = req.query;
