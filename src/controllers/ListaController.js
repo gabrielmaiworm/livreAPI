@@ -41,7 +41,7 @@ module.exports = {
         .where({
           documento: req.body.documento,
          
-        });
+        }).del();
       return res.send("Usuário deletado!");
     } catch (error) {
       next(error);
