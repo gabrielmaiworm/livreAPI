@@ -82,7 +82,7 @@ routes.put("/estoque-check", EstoqueController.updatecheck);
 routes.put("/estoque-generico", EstoqueController.updateGenerico);
 routes.put("/estoque-completo", EstoqueController.updateTotal);
 routes.delete("/estoque", EstoqueController.delete);
-routes.delete("/estoque-desmontar/:kit", EstoqueController.desmontarKit);
+routes.delete("/estoque-desmontar", EstoqueController.desmontarKit);
 routes.get("/estoque-inativo", EstoqueController.indexInativo);
 routes.get("/estoque-manutencao", EstoqueController.indexManutencao);
 routes.get("/estoque-manutencao/:kit", EstoqueController.indexManutencao);

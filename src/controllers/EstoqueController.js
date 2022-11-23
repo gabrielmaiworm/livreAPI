@@ -443,24 +443,35 @@ module.exports = {
 
 
   async desmontarKit  (req, res, next) {
-    const kitParam = req.params.kit;
+    try {
+      await knex("Estoque")
 
-    const query = await knex("Estoque").withSchema(schemaName);
-
-
-    if (kitParam != undefined && kitParam != "") {
-      query.where("Estoque.kit", kitParam).del();
-
-   
-  
+        .where({
+          kit: req.body.kit,
+         
+        }).del();
+      return res.send("kit desmontado!");
+    } catch (error) {
+      next(error);
+    };
       //Retornar mensagem de sucesso quando excluir o registro com sucesso no banco de dados
-          return res.json({
-              error: false,
-              message: "Kit apagado com sucesso!"
-          });
+     
       
-    }
+    
 
+  },
+  async delete(req, res, next) {
+    try {
+      await knex("Lista_espera")
+
+        .where({
+          documento: req.body.documento,
+         
+        }).del();
+      return res.send("Usuário deletado!");
+    } catch (error) {
+      next(error);
+    }
   },
 
 
