@@ -1,0 +1,44 @@
+{
+  "name": "livre-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@googlemaps/google-maps-services-js": "^3.3.16",
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.17.2",
+    "firebase": "^9.9.3",
+    "https": "^1.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^1.0.3",
+    "moment": "^2.29.1",
+    "mongoose": "^6.2.1",
+    "morgan": "^1.10.0",
+    "mssql": "^8.0.2",
+    "multer": "^1.4.5",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.7.5",
+    "pg": "^8.8.0",
+    "socket.io": "^4.5.1",
+    "stripe": "^10.12.0-beta.1",
+    "tedious": "^14.3.0",
+    "yarn": "^1.22.17"
+  },
+  "devDependencies": {
+    "eslint": "^8.25.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.1.0",
+    "node-env-run": "^4.0.2",
+    "nodemon": "^2.0.20"
+  }
+}

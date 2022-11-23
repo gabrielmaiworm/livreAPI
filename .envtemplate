@@ -1,0 +1,20 @@
+APP_URL="URL de acesso ao backend"
+
+STORAGE_TYPE="local de armazenamento"
+
+DB_USER="usuário do banco de dados"
+DB_PWD="senha do banco de dados"
+DB_NAME="nome do banco de dados"
+DB_SERVER="endereço do banco de dados"
+DB_PORT="porta do banco de dados"
+DB_SCHEMA="esquema do banco de dados"
+
+SITE="URL de acesso ao APP do frontend"
+SECRET="chave de acesso criptografada para o token gerada apartir da variavel {TEXTO} '9f3d23a61ad6e526f7c70761720a59fb'"
+TEMPO="tempo do Token" 
+TEXTO="texto usado pra criar a chave criptografada 'kitlivre'"
+
+MAIL_USER="EMAIL UTILIZADO PARA ENVIO DE CONFIRMACAO DE CONTA"
+MAIL_PASSWORD="SENHA DO EMAIL UTILIZADO PARA ENVIO DE CONFIRMACAO DE CONTA"
+
+GOOGLE_MAPS_API_KEY="CHAVE DA API DO GOOGLE MAPS"
