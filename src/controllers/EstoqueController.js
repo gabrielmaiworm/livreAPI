@@ -314,8 +314,6 @@ module.exports = {
     }
   },
 
-
-
   async update(req, res, next) {
     try {
       const { kit } = req.body;
@@ -368,26 +366,26 @@ module.exports = {
   },
 
 
-  async update(req, res, next) {
-    try {
-      await knex("Bateria")
+  // async update(req, res, next) {
+  //   try {
+  //     await knex("Bateria")
         
-        .update({
-          bateria_status: req.body.bateria_status,
-          carga: req.body.carga,
-        })
-        .where({ numero_serie_bateria: req.body.numero_serie_bateria });
+  //       .update({
+  //         bateria_status: req.body.bateria_status,
+  //         carga: req.body.carga,
+  //       })
+  //       .where({ numero_serie_bateria: req.body.numero_serie_bateria });
 
-      await knex("Estoque")
+  //     await knex("Estoque")
         
-        .update("emergencia", false)
-        .where("numero_serie_bateria", req.body.numero_serie_bateria)
-        .where("ativo", true);
-      return res.send();
-    } catch (error) {
-      next(error);
-    }
-  },
+  //       .update("emergencia", false)
+  //       .where("numero_serie_bateria", req.body.numero_serie_bateria)
+  //       .where("ativo", true);
+  //     return res.send();
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // },
 
   async updateGenerico(req, res, next) {
     try {
