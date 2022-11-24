@@ -25,11 +25,11 @@ module.exports = {
       );
       query.leftJoin("Locacao", "Locacao.kit", "Estoque.kit");
       query.leftJoin("Parceiro", "Parceiro.documento_empresa", "Estoque.parceiro");
-      // query.where("Estoque.ativo", true);
+      query.where("Estoque.ativo", true);
       // query.andWhere("Bateria.carga", ">", 80);
-      // query.andWhere("Bateria.bateria_status", "EM FUNCIONAMENTO");
-      // query.andWhere("Equipamento.equipamento_status", "EM FUNCIONAMENTO");
-      // query.andWhere("Estoque.emprestado", false);
+      query.andWhere("Bateria.bateria_status", "EM FUNCIONAMENTO");
+      query.andWhere("Equipamento.equipamento_status", "EM FUNCIONAMENTO");
+      query.andWhere("Estoque.emprestado", false);
 
       if (kitParam != undefined && kitParam != "") {
         query.where("Estoque.kit", kitParam);
@@ -314,6 +314,8 @@ module.exports = {
     }
   },
 
+
+
   async update(req, res, next) {
     try {
       const { kit } = req.body;
@@ -328,6 +330,7 @@ module.exports = {
       next(error);
     }
   },
+
   async updatecheck(req, res, next) {
     try {
       await knex("Estoque").update({
@@ -592,7 +595,7 @@ module.exports = {
 
       query.where(function () {
         this.where("Bateria.carga", "<=", 20)
-          .orWhere({ rodaGirando: true, velocidade: !null })
+          .orWhere({ rodaGirando: false })
           .orWhere("Estoque.emergencia", true);
       });
 
