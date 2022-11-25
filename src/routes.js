@@ -1,7 +1,7 @@
 const routes = require("express").Router();
 const path = require("path");
-const multer = require("multer");
-const multerConfig = require("./config/multer");
+// const multer = require("multer");
+// const multerConfig = require("./config/multer");
 
 
 // const upload = multer({ dest: 'uploads/' })
@@ -219,33 +219,33 @@ routes.put("/routs.users", routs_users.update);
 
 
 
-routes.post('/images', multer(multerConfig).single('foto'), function (req, res) {
-  const image = req.file;
-  const originalName = image.originalname;
-  console.log("image", originalName);
+// routes.post('/images', multer(multerConfig).single('foto'), function (req, res) {
+//   const image = req.file;
+//   const originalName = image.originalname;
+//   console.log("image", originalName);
 
-  if (image != undefined) {
-    // const name = image.name;
-    // const extension = name.substring(name);
-    // const imageData = image.data;
+//   if (image != undefined) {
+//     // const name = image.name;
+//     // const extension = name.substring(name);
+//     // const imageData = image.data;
 
-    if (res != null) {
-      res.status(200).json({
-        message: "success",
-        url: image,
-      });
-      console.log("imagem enviada...");
-    } else {
-      res.status(500).json({
-        message: "error on upload",
-      });
-    }
-  } else {
-    res.status(500).json({
-      message: "undefined image",
-    });
-  }
-});
+//     if (res != null) {
+//       res.status(200).json({
+//         message: "success",
+//         url: image,
+//       });
+//       console.log("imagem enviada...");
+//     } else {
+//       res.status(500).json({
+//         message: "error on upload",
+//       });
+//     }
+//   } else {
+//     res.status(500).json({
+//       message: "undefined image",
+//     });
+//   }
+// });
 
 // routes.post('/forgot', (req, res, next) => {
 //   db.knex(req.body.email, (err, doc) => {

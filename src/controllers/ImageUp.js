@@ -1,5 +1,5 @@
-const multer = require('multer');
-const parser = multer({ dest: 'public/uploads/' })
+// const multer = require('multer');
+// const parser = multer({ dest: 'public/uploads/' })
 
 
 module.exports =  {
