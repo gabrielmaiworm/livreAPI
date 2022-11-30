@@ -26,7 +26,7 @@ module.exports = {
       query.leftJoin("Locacao", "Locacao.kit", "Estoque.kit");
       query.leftJoin("Parceiro", "Parceiro.documento_empresa", "Estoque.parceiro");
       query.where("Estoque.ativo", true);
-      query.andWhere("Bateria.carga", ">", 80);
+      // query.andWhere("Bateria.carga", ">", 80);
       query.andWhere("Bateria.bateria_status", "EM FUNCIONAMENTO");
       query.andWhere("Equipamento.equipamento_status", "EM FUNCIONAMENTO");
       query.andWhere("Estoque.emprestado", false);
@@ -137,6 +137,8 @@ module.exports = {
       next(error);
     }
   },
+
+  
   async indexTotal(req, res, next) {
     try {
       const kitParam = req.params.kit;
