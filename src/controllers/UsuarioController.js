@@ -138,7 +138,7 @@ module.exports = {
         
         .where({ documento: documento })
         .update({ ativo: true });
-      return res.status(201).send({ result });
+      return res.status(201).send( "Usuario ativado!" );
     } catch (error) {
       next(error);
     }
@@ -159,6 +159,35 @@ module.exports = {
       next(error);
     }
   },
+  async DesativarUser(req, res, next) {
+    try {
+      const documento = req.body.documento;
+      const result = await knex("Usuario")
+        
+        .where({ documento: documento })
+        .update({ ativo: false });
+      return res.status(201).send('Usuário desativado!');
+    } catch (error) {
+      next(error);
+    }
+  },
+  async indexCPF(req, res, next) {
+    try {
+      const results = await knex("Usuario")
+        
+        .where({ documento: req.query.documento })
+        .select("nome")
+        .select("sobrenome")
+        .select("foto_documento")
+        .select("foto_documento64")
+        .select("documento")
+        .select("data_de_nascicmento");
+      res.redirect("http://localhost:3005/");
+    } catch (error) {
+      next(error);
+    }
+  },
+
   async authenticate(req, res, next) {
     try {
       var authheader = req.headers.authorization;
@@ -594,6 +623,22 @@ module.exports = {
         res.status(200).json({ message: "Email enviado" }).send();
       } else {
         res.status(500).json({ error: "Email não encontrado" }).send();
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async verificaEmail(req, res, next) {
+    try {
+      const { email } = req.body;
+      const result = await knex("Usuario").withSchema(schemaName).where("email", email);
+
+      if (result.length > 0) {
+       
+        res.status(200).json({ message: "Usuario cadastrado" }).send();
+      } else {
+        res.status(500).json({ error: "Usuario não encontrado" }).send();
       }
     } catch (error) {
       next(error);

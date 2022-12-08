@@ -42,10 +42,12 @@ routes.get("/usuario-teste", UsuarioController.index);
 routes.get("/usuario", UsuarioController.index);
 routes.post("/usuario", UsuarioController.create);
 routes.post("/activate-user", UsuarioController.activateUser);
+routes.post("/desativar-user", UsuarioController.DesativarUser);
 routes.post("/usuario-admin", UsuarioController.createADM);
 routes.post("/usuario-admin-sem", UsuarioController.createADMNoPass);
 routes.put("/usuario", UsuarioController.update);
 routes.post("/usuario-senha", UsuarioController.sendRecoverPasswordemail);
+routes.post("/usuario-email", UsuarioController.verificaEmail);
 routes.put("/usuario-senha", UsuarioController.update_senha);
 routes.put("/ativar-usuario", UsuarioController.updateAtivo);
 routes.put("/troca-senha-usuario", UsuarioController.updateSenha);
@@ -133,132 +135,11 @@ routes.get("/mapa", (req, res) => {
 // Limpar Banco (NAO ENVIAR PARA PRODUCAO)
 routes.delete("/limpar-tudo", UsuarioController.limparTudo);
 
-// routes.post('/images', async (req, res) => {
-//   const image = req.files.file
 
-//   if (image !== undefined) {
-//     const name = image.name
-//     const extension = name.substring(name.lastIndexOf('.'))
-//     const imageData = image.data
-
-//     console.log('Fazendo upload...')
-//     const uploadResult = await uploadFileToStorage(imageData, extension)
-//     console.log(uploadResult)
-
-//     if (uploadResult != null) {
-//       res.status(200).json({
-//         message: 'success',
-//         url: uploadResult
-//       })
-//     } else {
-//       res.status(500).json({
-//         message: 'error on upload'
-//       })
-//     }
-//   } else {
-//     res.status(500).json({
-//       message: 'undefined image'
-//     })
-//   }
-// })
 
 const db = require("./Senha/db");
 const { createPaymentIntent } = require("./config/stripe");
 
-/*
-não faz sentido
-const utils = require('./Senha/utils')
-const routs_users = require('./Senha/routs.users')
 
-routes.get("/db", db.index);
-routes.post("/db", db.create);
-routes.put("/db", db.update);
-
-routes.get("/utils", utils.index);
-routes.post("/utils", utils.create);
-routes.put("/utils", utils.update);
-
-routes.get("/routs.users", routs_users.index);
-routes.post("/routs.users", routs_users.create);
-routes.put("/routs.users", routs_users.update);
-
-*/
-
-
-
-
-
-// const sing = multer({ dest: './public/data/uploads/' })
-// routes.post('/images', sing.single('foto'), function (req, res) {
-//   const image = req.file;
-//   const originalName = image.originalname;
-//   console.log("image", originalName);
-
-//   if (image != undefined) {
-//     // const name = image.name;
-//     // const extension = name.substring(name);
-//     // const imageData = image.data;
-
-//     if (res != null) {
-//       res.status(200).json({
-//         message: "success",
-//         url: image,
-//       });
-//       console.log("imagem enviada...");
-//     } else {
-//       res.status(500).json({
-//         message: "error on upload",
-//       });
-//     }
-//   } else {
-//     res.status(500).json({
-//       message: "undefined image",
-//     });
-//   }
-// });
-
-
-
-// routes.post('/images', multer(multerConfig).single('foto'), function (req, res) {
-//   const image = req.file;
-//   const originalName = image.originalname;
-//   console.log("image", originalName);
-
-//   if (image != undefined) {
-//     // const name = image.name;
-//     // const extension = name.substring(name);
-//     // const imageData = image.data;
-
-//     if (res != null) {
-//       res.status(200).json({
-//         message: "success",
-//         url: image,
-//       });
-//       console.log("imagem enviada...");
-//     } else {
-//       res.status(500).json({
-//         message: "error on upload",
-//       });
-//     }
-//   } else {
-//     res.status(500).json({
-//       message: "undefined image",
-//     });
-//   }
-// });
-
-// routes.post('/forgot', (req, res, next) => {
-//   db.knex(req.body.email, (err, doc) => {
-//     if (err || !doc) res.redirect('/') // manda pro login mesmo que não ache
-//     const newpass = require('../utils').generatePassword()
-//     db.changePassword(req.body.email, newpass)
-//     require('../mail')(
-//       req.body.email,
-//       'Sua Nova Senha de Usuário ',
-//       'Olá ' + doc.username + ', sua nova senha é ' + newpass
-//     )
-//     res.redirect('/')
-//   })
-// }) // nova senha enviada por e-mail(mensagem)
 
 module.exports = routes;
