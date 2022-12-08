@@ -47,6 +47,40 @@ module.exports = {
       next(error);
     }
   },
+
+  async listUserActive(req, res, next) {
+    try {
+      const { documento, email, ativo } = req.query;
+      const { campo } = req.body;
+
+      const query = knex("Usuario").withSchema(schemaName).where("ativo", true);
+
+      query.join("Nivel", "Nivel.id", "Usuario.nivel");
+
+      if (documento) {
+        query.where("documento", documento);
+      }
+    
+
+      if (email != undefined && email != "") {
+        query.where("email", email);
+      }
+
+      if (campo) {
+        query.select(campo);
+      } else {
+        query.select("Usuario.*");
+        query.select("Nivel.*");
+      }
+      const results = await query;
+      res.json(results);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+
+
   async create(req, res, next) {
     const senha = req.body.senha;
     const passwordIsStrength = checkPasswordStrength(senha);
@@ -143,6 +177,7 @@ module.exports = {
       next(error);
     }
   },
+  
   async indexCPF(req, res, next) {
     try {
       const results = await knex("Usuario")
