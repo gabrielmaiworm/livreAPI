@@ -78,6 +78,36 @@ module.exports = {
       next(error);
     }
   },
+  async listUserInactives(req, res, next) {
+    try {
+      const { documento, email, ativo } = req.query;
+      const { campo } = req.body;
+
+      const query = knex("Usuario").withSchema(schemaName).where("ativo", false);
+
+      query.join("Nivel", "Nivel.id", "Usuario.nivel");
+
+      if (documento) {
+        query.where("documento", documento);
+      }
+    
+
+      if (email != undefined && email != "") {
+        query.where("email", email);
+      }
+
+      if (campo) {
+        query.select(campo);
+      } else {
+        query.select("Usuario.*");
+        query.select("Nivel.*");
+      }
+      const results = await query;
+      res.json(results);
+    } catch (error) {
+      next(error);
+    }
+  },
 
 
 

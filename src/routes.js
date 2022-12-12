@@ -41,6 +41,7 @@ routes.put("/bateria", BateriaController.update);
 routes.get("/usuario-teste", UsuarioController.index);
 routes.get("/usuario", UsuarioController.index);
 routes.get("/usuario-ativo", UsuarioController.listUserActive);
+routes.get("/usuario-inativo", UsuarioController.listUserInactives)
 routes.post("/usuario", UsuarioController.create);
 routes.post("/activate-user", UsuarioController.activateUser);
 routes.post("/desativar-user", UsuarioController.DesativarUser);
